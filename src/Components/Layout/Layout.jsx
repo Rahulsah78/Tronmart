@@ -1,7 +1,7 @@
 import Aos from 'aos';
 import React, { useEffect, useState } from 'react'
 import { BsCart4 } from 'react-icons/bs';
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch, FaUserFriends } from 'react-icons/fa'
 import { IoIosArrowDown, IoIosArrowForward, IoIosArrowUp, IoIosColorPalette } from 'react-icons/io'
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import { RiMenu2Line } from 'react-icons/ri';
@@ -126,7 +126,7 @@ const Layout = ({ children }) => {
 
     // Color change handler
     const handleColorChange = (color) => {
-        setBgColor(color); 
+        setBgColor(color);
     };
     // useEffect(() => {
     //     const timer = setTimeout(() => {
@@ -155,66 +155,56 @@ const Layout = ({ children }) => {
                 {/* navbar here */}
                 <nav className="relative">
                     {/* First Navbar */}
-                    <div className={`md:flex hidden  border-b-[1px]  border-gray-600 items-center justify-between text-white px-10 bg-[${bgColor}] h-[36px]`}>
+                    <div
+                        className={`md:flex hidden border-b border-gray-600 items-center justify-between px-10 bg-[${bgColor}] h-[86px]`}
+                    >
+                        {/* Logo Section */}
                         <div className="flex items-center gap-1">
-                            <p>24/7 Customer service</p>
-                            <span className="font-bold">1-800-234-5678</span>
-                        </div>
-                        <div className="items-center gap-8 hidden md:flex">
-                            <p>Shipping & return</p>
-                            <Link to={'/admin/dashboard'}>Admin</Link>
-                        </div>
-                    </div>
-
-                    {/* Second Navbar */}
-                    <div className={`bg-[${bgColor}] h-[80px] flex items-center justify-between text-white md:px-10 px-5`}>
-                        <div className="md:flex flex items-center gap-5">
-                            <button
-                                className="flex md:hidden transition duration-300"
-                                onClick={() => setMobile(!mobile)}
-                            >
-                                {mobile ? (
-                                    <RxCross2 className="text-3xl" />
-                                ) : (
-                                    <RiMenu2Line className="text-3xl" />
-                                )}
-                            </button>
                             <Link to={'/'}>
-                                <img src="/images/logos.svg" alt="logo" />
+                                <img
+                                    src="/images/logos.svg"
+                                    alt="logo"
+
+                                />
                             </Link>
                         </div>
-                        <div className="relative">
-                            <input
-                                className="md:flex hidden h-11 w-[21vw] px-4 border-b-2 border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                type="text"
-                                placeholder="Search product ..."
-                            />
-                            <FaSearch className="md:flex hidden absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0769DA]" />
-                            <button
-                                className="flex md:hidden transition duration-300"
-                                onClick={() => setCart(!cart)}
-                            >
-                                <BsCart4 className="text-3xl" />
-                            </button>
+
+                        {/* Search Bar and Icons Section */}
+                        <div className="items-center gap-8 hidden relative md:flex">
+                            {/* Search Bar */}
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    placeholder="Search..."
+                                    className="pl-4 pr-10 py-2  text-black  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                                <div className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500">
+                                    <FaSearch />
+                                </div>
+                            </div>
+
+                            {/* Cart Icon */}
+                            <div className="flex items-center relative gap-10">
+                                <button
+                                    className="transition duration-300 text-white"
+                                    onClick={() => setCart(!cart)}
+                                >
+                                    <BsCart4 className="text-2xl" />
+                                </button>
+
+                                {/* Cart Number */}
+                                <span className="h-5 w-5 absolute -top-4 left-3 cursor-pointer rounded-full flex items-center justify-center bg-white text-[#0472F0]   font-bold">
+                                    {state.length}
+                                </span>
+                            </div>
+
                         </div>
                     </div>
 
                     {/* Third Navbar */}
                     <div className={`relative px-10 bg-[${bgColor}] border-t-[1px] border-gray-600 text-white h-[65px] md:flex hidden items-center justify-between`}>
                         {/* All Products Section */}
-                        <div className="flex items-center gap-4 cursor-pointer font-bold">
-                            <button
-                                onClick={() => setAllProduct(!allproduct)}
-                                className="flex items-center gap-4"
-                            >
-                                <span>All Products</span>
-                                {allproduct ? (
-                                    <IoIosArrowDown className="font-bold text-xl" />
-                                ) : (
-                                    <MdOutlineKeyboardArrowUp className="text-xl font-bold" />
-                                )}
-                            </button>
-                        </div>
+                        <p></p>
 
                         {/* Other Menu Items */}
                         <div className="flex items-center gap-10">
@@ -225,21 +215,14 @@ const Layout = ({ children }) => {
                                     </Link>
                                 </div>
                             ))}
+                            <div className='flex items-center gap-2'>
+                                <FaUserFriends className='text-2xl' />
+                                <Link to={'/login'} className="text-white font-semibold text-[18px]">Log In</Link>/
+                                <Link to={'/account/create'} className="text-white font-semibold text-[18px]">Sign Up</Link>
+                            </div>
                         </div>
 
-                        <div className="flex items-center relative gap-10">
-                            <button
-                                className="transition duration-300"
-                                onClick={() => setCart(!cart)}
-                            >
-                                <BsCart4 className="text-2xl" />
-                            </button>
-                            <Link to={'/login'} className="font-semibold text-[18px]">Log In</Link>
-                            {/* Cart Number */}
-                            <span className="h-5 w-5 absolute -top-4 left-3 cursor-pointer rounded-full flex items-center justify-center bg-white text-[#0472F0]   font-bold">
-                                {state.length}
-                            </span>
-                        </div>
+
 
                         {/* Hover Link Items */}
                         {allproduct && (
@@ -299,7 +282,7 @@ const Layout = ({ children }) => {
                                 </div>
 
                                 {/* Subtotal */}
-                                <div className="px-5 py-4 border-t">
+                                <div className="px-5 mt-16 py-4 border-t">
                                     <div className="flex justify-between items-center mb-4">
                                         {state.length > 0 ? (
                                             <>
@@ -317,9 +300,7 @@ const Layout = ({ children }) => {
                                                     View Cart
                                                 </button>
                                             </Link>
-                                            <button className="w-full px-4 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-500">
-                                                Checkout
-                                            </button>
+
                                         </div>
                                     ) : (
                                         <div className="text-center text-gray-500 text-sm">
@@ -503,10 +484,12 @@ const Layout = ({ children }) => {
                             </div>
                         </div>
                     </div>
-                    <div className={`px-10 md:h-[10vw] h-[35vw] bg-[${bgColor}] text-gray-300 flex justify-between items-center`}>
-                        <span className='md:text-sm text-[10px]'>© 2024 Electronic Store. Powered by Electronic Store</span>
-                        <div>
-                            <img src="/images/visa.png" alt="Visa" />
+                    <div className={`px-10 md:h-[7vw] mt-10 h-[35vw] bg-[${bgColor}] text-gray-300 flex justify-between items-center`}>
+                        <span className='md:text-sm text-white text-[10px]'>© 2024 Electronic Store. Powered by Electronic Store</span>
+                        <div className='flex items-center gap-5'>
+                            <img className='h-[3vw]' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkh_LDiTlmPFGl7wxdEyJVTXTSg6ni6nUDCa91XOJ3jjfvG3mrTcGKYzI7tkAw5Xv0uvY&usqp=CAU" alt="Visa" />
+                            <img className='h-[3vw]' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7Hs5PTz2c6EnHlTimU7la4SKSZ3xKMhWZBA&s" alt="Visa" />
+                            <img className='h-[3vw]' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAIOu8V2wUmLzF7cUIq0MO0caYT1lyusHXcg&s" alt="Visa" />
                         </div>
                     </div>
                 </footer>

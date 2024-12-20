@@ -394,7 +394,7 @@ const Layout = ({ children }) => {
                 </div>
 
                 {/* Footer */}
-                <footer className='h-[30vw] bg-red-500'>
+                <footer className='h-[30vw] '>
                     <div className='px-10 flex flex-col md:flex-row md:items-center md:justify-between border-t-2 md:h-[20vw] bg-white'>
                         <div className='mb-4 md:mt-0 mt-5 md:mb-0'>
                             <img className='bg-gray-500' src="/images/logos.svg" alt="Logo" />
@@ -429,10 +429,12 @@ const Layout = ({ children }) => {
                             </div>
                         </div>
                     </div>
-                    <div className='px-10 md:h-[10vw] h-[35vw] bg-[#27333E] text-gray-300 flex justify-between items-center'>
+                    <div className='px-10 md:h-[7vw] mt-10 h-[35vw] bg-[#27333E] text-gray-300 flex justify-between items-center'>
                         <span className='md:text-sm text-[10px]'>© 2024 Electronic Store. Powered by Electronic Store</span>
-                        <div>
-                            <img src="/images/visa.png" alt="Visa" />
+                        <div className='flex items-center gap-5'>
+                            <img className='h-[3vw]' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkh_LDiTlmPFGl7wxdEyJVTXTSg6ni6nUDCa91XOJ3jjfvG3mrTcGKYzI7tkAw5Xv0uvY&usqp=CAU" alt="Visa" />
+                            <img className='h-[3vw]' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7Hs5PTz2c6EnHlTimU7la4SKSZ3xKMhWZBA&s" alt="Visa" />
+                            <img className='h-[3vw]' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAIOu8V2wUmLzF7cUIq0MO0caYT1lyusHXcg&s" alt="Visa" />
                         </div>
                     </div>
                 </footer>

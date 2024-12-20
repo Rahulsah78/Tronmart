@@ -10,25 +10,23 @@ const Cart = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleincrement = (item) => {
+    const handleIncrement = (item) => {
         dispatch(addtocart(item));
     };
 
-    // Remove item from cart
-    const handleremove = (item) => {
+    const handleRemove = (item) => {
         dispatch(removeToCart(item));
         if (state.length === 0) {
-            navigate('/');
+            navigate("/");
         }
     };
 
-    // Decrease the quantity
-    const handledecrease = (item) => {
+    const handleDecrease = (item) => {
         dispatch(decreaseQuantity(item));
     };
 
     // Calculate subtotal
-    const subtotal = state.reduce((acc, item) => acc + item.price * item.qty, 0);
+    const subtotal = state.reduce((acc, item) => acc + (item.price || 0) * (item.qty || 0), 0);
 
     // Calculate total (you can add additional charges like taxes, shipping, etc., if needed)
     const total = subtotal; // Assuming no additional charges for now
@@ -38,9 +36,6 @@ const Cart = () => {
         setShowCouponInput(!showCouponInput);
     };
 
-    const cart = useSelector((state) => state.cart.carts); // Redux state for cart
-
-    console.log(cart)
     return (
         <Layout>
             <div className="px-5 py-8">
@@ -70,18 +65,18 @@ const Cart = () => {
                                             />
                                             <span className="hidden md:block md:text-xl text-sm">{item.name}</span>
                                         </td>
-                                        <td className="p-4">Rs{item.price.toFixed(2)}</td>
+                                        <td className="p-4">Rs{(item.price || 0).toFixed(2)}</td>
                                         <td className="p-4">
                                             <div className="flex items-center border border-gray-300 rounded-md w-fit">
                                                 <button
-                                                    onClick={() => handledecrease(item)}
+                                                    onClick={() => handleDecrease(item)}
                                                     className="px-3 py-1"
                                                 >
                                                     -
                                                 </button>
                                                 <span className="px-3 py-1">{item.qty}</span>
                                                 <button
-                                                    onClick={() => handleincrement(item)}
+                                                    onClick={() => handleIncrement(item)}
                                                     className="px-3 py-1"
                                                 >
                                                     +
@@ -89,16 +84,15 @@ const Cart = () => {
                                             </div>
                                         </td>
                                         <td className="p-4">
-                                            Rs{(item.price * item.qty).toFixed(2)}
+                                            Rs{((item.price || 0) * (item.qty || 0)).toFixed(2)}
                                         </td>
                                         <td className="p-4">
                                             <button
-                                                onClick={() => handleremove(item.id)}
+                                                onClick={() => handleRemove(item.id)}
                                                 className="text-red-500"
                                             >
                                                 <FaRegTrashCan />
                                             </button>
-
                                         </td>
                                     </tr>
                                 ))}
@@ -127,15 +121,14 @@ const Cart = () => {
                         </div>
                         {showCouponInput && (
                             <div
-                                className={`flex gap-2 items-center transition-all duration-500 ease-in-out ${showCouponInput ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
-                                    }`}
+                                className={`flex gap-2 items-center transition-all duration-500 ease-in-out ${showCouponInput ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"}`}
                             >
                                 <input
                                     type="text"
                                     placeholder="Enter coupon code"
-                                    className="py-2 px-3 w-full border border-gray-300  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="py-2 px-3 w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
-                                <button className="bg-blue-500 text-white font-semibold py-2 px-4  hover:bg-blue-600">
+                                <button className="bg-blue-500 text-white font-semibold py-2 px-4 hover:bg-blue-600">
                                     Apply
                                 </button>
                             </div>
@@ -150,7 +143,6 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-
         </Layout>
     );
 };

@@ -56,11 +56,7 @@ const AudioDetails = () => {
         setLightboxOpen(true);
     };
 
-    // Add to cart
-    const handleAddToCart = () => {
-        dispatch(addtocart(audioproduct));
-        toast.success('Item added to cart');
-    };
+    
 
     // Increment quantity
     const handleIncrement = () => {

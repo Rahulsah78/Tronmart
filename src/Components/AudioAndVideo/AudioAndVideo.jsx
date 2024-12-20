@@ -40,7 +40,7 @@ const AudioAndVideo = () => {
                 <div className='px-5 pb-5 shadow-md bg-white h-full'>
                     <h1 className='pt-4 text-2xl font-bold'>Audio & Video</h1>
                     <div className='flex gap-5 items-center justify-between'>
-                        <div data-aos="fade-up" className='flex flex-col md:flex-row gap-6 mt-5'>
+                        <div data-aos="fade-up" className='flex flex-col md:flex-row gap-2 mt-5'>
                             {audiodata.map((item, index) => (
                                 <div key={index} className='overflow-hidden relative h-auto w-full group'>
                                     <Link to={`/audioDetails/${item.id}`} className='flex flex-col items-center'>

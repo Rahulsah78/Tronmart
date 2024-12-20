@@ -5,6 +5,9 @@ import Layout from '../../Components/Layout/Layout';
 import { IoSearchOutline } from 'react-icons/io5';
 import SimpleGallery from "../Simple/SimpleGallery"
 import relatedata from "../../AlllJsonData/RelatedProducts/RelatedProducts.json";
+import { addtocart } from '../../Redux/Allslices/CartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const ProductsDetails = () => {
     const { detailsId } = useParams();
@@ -50,6 +53,28 @@ const ProductsDetails = () => {
         const y = ((e.clientY - top) / height) * 100;
         setZoomPosition({ x, y });
     };
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.cart.carts); // Redux state for cart
+    const productInCart = cart.find((item) => item.id === product.id);
+    const quantity = productInCart ? productInCart.qty : 0;
+
+    // Increment quantity
+    const handleIncrement = () => {
+        dispatch(addtocart(product));
+    };
+
+    // Decrement quantity
+    const handleDecrement = () => {
+        if (quantity > 1) {
+            dispatch(decreaseQuantity(product));
+        } else {
+            toast.info('Quantity cannot go below 1');
+        }
+    };
+    const ADDTOCART = (product) => {
+        dispatch(addtocart(product));
+        toast.success("product is added")
+    }
     return (
         <Layout>
             <div className="p-10 bg-[#F7FAFD] min-h-screen flex flex-col lg:flex-row">
@@ -108,23 +133,23 @@ const ProductsDetails = () => {
                     <div className="flex flex-wrap gap-5 items-center mt-6">
                         <div className="flex items-center gap-2">
                             <button
-                                // onClick={handleDecrement}
+                                onClick={handleDecrement}
                                 className="font-bold text-lg px-4 py-2 border bg-white"
                             >
                                 -
                             </button>
                             <span className="font-bold text-lg px-4 py-2 border bg-gray-100">
-                                {/* {quantity} Display the quantity here */}
+                            {quantity}
                             </span>
                             <button
-                                // onClick={handleIncrement}
+                                onClick={handleIncrement}
                                 className="font-bold text-lg px-4 py-2 border bg-white"
                             >
                                 +
                             </button>
                         </div>
                         <button
-                            // onClick={handleAddToCart}
+                            onClick={ADDTOCART}
                             className="px-6 py-3 bg-blue-500 text-white font-semibold w-fit"
                         >
                             Add to Cart

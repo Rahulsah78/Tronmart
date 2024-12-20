@@ -75,14 +75,14 @@ const GiftCards = () => {
           <div>
             <div data-aos="fade-up" className="md:h-[50vw] w-full space-y-5">
               <div className="h-1/2 md:flex gap-5">
-                <div className="h-full md:w-1/2">
+                <div className="h-full p-4">
                   <img
                     src="https://images-na.ssl-images-amazon.com/images/G/01/GiftCards/GCLP/Q1_2024/BGCLP_D_Movie.jpg"
                     alt="Movie Gift Card"
                     className="h-full w-full md:object-cover rounded-md"
                   />
                 </div>
-                <div className="h-full md:mt-0 mt-5 md:w-1/2">
+                <div className="h-full p-4 md:mt-0 mt-5 ">
                   <img
                     src="https://images-na.ssl-images-amazon.com/images/G/01/GiftCards/GCLP/Q1_2024/BGCLP_D_Restaurant.jpg"
                     alt="Restaurant Gift Card"
@@ -91,14 +91,14 @@ const GiftCards = () => {
                 </div>
               </div>
               <div className="h-1/2 md:flex gap-5">
-                <div className="h-full md:w-1/2">
+                <div className="h-full p-4 ">
                   <img
                     src="https://images-na.ssl-images-amazon.com/images/G/01/GiftCards/GCLP/Q1_2024/BGCLP_D_Style.jpg"
                     alt="Style Gift Card"
                     className="h-full w-full object-cover rounded-md"
                   />
                 </div>
-                <div className="h-full md:mt-0 mt-5  md:w-1/2">
+                <div className="h-full p-4 md:mt-0 mt-5  ">
                   <img
                     src="https://images-na.ssl-images-amazon.com/images/G/01/GiftCards/GCLP/Q1_2024/BGCLP_D_Travel.jpg"
                     alt="Travel Gift Card"

@@ -78,7 +78,7 @@ const Products = () => {
             "name": "Orange Multi Color Headphone",
             "rating": "★4k",
             "price": 629.00,
-            "rating": "4k",
+            
             "Size": "S, M",
             "Category": "Electronics",
             "Stock": "Out of stock",
